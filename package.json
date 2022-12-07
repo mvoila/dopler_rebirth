@@ -1,0 +1,28 @@
+{
+  "name": "dopler_rebirth",
+  "version": "1.0.0",
+  "description": "NodeJs backend for DOPLER",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mvoila/dopler_rebirth.git"
+  },
+  "author": "Julien GOULHEN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mvoila/dopler_rebirth/issues"
+  },
+  "homepage": "https://github.com/mvoila/dopler_rebirth#readme",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "fast-xml-parser": "^4.0.11",
+    "jszip": "^3.10.1",
+    "neo4j-driver": "^5.2.0"
+  }
+}
