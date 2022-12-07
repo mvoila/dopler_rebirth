@@ -104,8 +104,8 @@ module.exports = class hypoLoader {
         relations : [
           {direction : 'from_node', types : 'CONCERNS', matchValues : []}
         ]});
-      }else{
-        nodeString += `intervalle:'${hypo.ouvrage.Attr_name.replace(/(?<!\\)'/g, "\\\'")}',`
+      }else if(key === 'applicIntervalle'){
+        /* nodeString += `intervalle:'${hypo.ouvrage.Attr_name.replace(/(?<!\\)'/g, "\\\'")}',`
         const nodeVarHash = crypto.createHash('sha256');
         nodeVarHash.update(hypo.ouvrage.Attr_name);
         queriesToRun.push(`MERGE (o${nodeVarHash.digest('hex')}:Ouvrage:DOPLER:Maquette{name:'${hypo.ouvrage.Attr_name.replace(/(?<!\\)'/g, "\\\'")}'})`);
@@ -115,7 +115,7 @@ module.exports = class hypoLoader {
         ],
         relations : [
           {direction : 'from_node', types : 'CONCERNS', matchValues : []}
-        ]});
+        ]}); */
       }
     });
     
@@ -256,13 +256,13 @@ module.exports = class hypoLoader {
 
     let queryCreateImport = `MERGE (n:Import:DOPLER:Maquette:ImportXML{name:'Import archive DOPLER',createdTime:'${createdTime}',source:'${file}'})`;
     try{
-      //await runSingleWriteQuery(queryCreateImport,session);
+      await runSingleWriteQuery(queryCreateImport,session);
       readFile(file,'string').then((deflatedFiles)=>{
         deflatedFiles.forEach(async (deflatedFile,indFile)  => {
             let dependancy = {level: 1, labels:'Import:DOPLER:Maquette:ImportXML',
             matchValues : [
                           {property:'createdTime',value:createdTime}
-                          ,{property:'source', value:deflatedFile.name}
+                          ,{property:'source', value:file}
             ],relations : [
               {direction : 'to_node', types : 'GROUP', matchValues : []}
           ]}
